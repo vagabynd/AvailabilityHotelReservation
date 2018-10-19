@@ -118,7 +118,7 @@ public class ServiceImplTest {
     expect(hotelRepositoryMock.findByHotelName(hotel.getHotelName())).andReturn(hotel);
     replay(hotelRepositoryMock);
 
-    List<Apartment> apartments = availabilityService.retrieveApartments(hotel.getHotelName());
-    Assert.assertEquals(apartments.size(), 3);
+    Hotel hotelReturn = availabilityService.retrieveHotelByName(hotel.getHotelName());
+    Assert.assertEquals(hotelReturn.getHotelId(), hotel.getHotelId());
   }
 }

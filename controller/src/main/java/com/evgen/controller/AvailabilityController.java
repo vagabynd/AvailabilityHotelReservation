@@ -45,10 +45,10 @@ public class AvailabilityController {
     return availabilityService.retrieveHotels();
   }
 
-  @GetMapping("/hotels/{name}/apartments")
+  @GetMapping("/hotels/{name}")
   @ResponseStatus(HttpStatus.OK)
   @ResponseBody
-  public List<Apartment> retrieveApartmentsByHotelName(@PathVariable("name") String hotelName) {
-    return availabilityService.retrieveApartments(hotelName);
+  public Hotel retrieveHotelByName(@PathVariable("name") String hotelName) {
+    return availabilityService.retrieveHotelByName(hotelName);
   }
 }

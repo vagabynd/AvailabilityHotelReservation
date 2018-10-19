@@ -26,6 +26,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.evgen.Guest;
+import com.evgen.Hotel;
 import com.evgen.Reservation;
 import com.evgen.config.ControllerMockTestConf;
 import com.evgen.service.AvailabilityService;
@@ -94,12 +95,12 @@ public class ControllerMockTest {
   }
 
   @Test
-  public void retrieveApartmentsByHotelNameTest() throws Exception {
-    expect(availabilityService.retrieveApartments(anyString())).andReturn(new ArrayList<>());
+  public void retrieveHotelByNameTest() throws Exception {
+    expect(availabilityService.retrieveHotelByName(anyString())).andReturn(new Hotel());
     replay(availabilityService);
 
     mockMvc.perform(
-        get("/hotels/name/apartments")
+        get("/hotels/name")
             .accept(MediaType.APPLICATION_JSON)
     ).andDo(print())
         .andExpect(status().isOk());

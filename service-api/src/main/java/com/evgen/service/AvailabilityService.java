@@ -17,5 +17,5 @@ public interface AvailabilityService {
 
   List<Hotel> retrieveHotels();
 
-  List<Apartment> retrieveApartments(String hotelName);
+  Hotel retrieveHotelByName(String hotelName);
 }

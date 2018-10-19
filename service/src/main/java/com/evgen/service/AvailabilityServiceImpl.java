@@ -45,9 +45,8 @@ public class AvailabilityServiceImpl implements AvailabilityService {
   }
 
   @Override
-  public List<Apartment> retrieveApartments(String hotelName) {
-    Hotel hotel = hotelRepository.findByHotelName(hotelName);
-    return hotel.getApartments();
+  public Hotel retrieveHotelByName(String hotelName) {
+    return hotelRepository.findByHotelName(hotelName);
   }
 
 }
