@@ -2,12 +2,11 @@ package com.evgen.service;
 
 import java.util.List;
 
-import com.evgen.Apartment;
-import com.evgen.Guest;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.evgen.Guest;
 import com.evgen.Hotel;
 import com.evgen.Reservation;
 import com.evgen.dao.GuestRepository;

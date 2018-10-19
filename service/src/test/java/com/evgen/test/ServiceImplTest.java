@@ -20,17 +20,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.evgen.Apartment;
 import com.evgen.Guest;
 import com.evgen.Hotel;
 import com.evgen.Reservation;
+import com.evgen.config.ServiceImplTestConf;
 import com.evgen.dao.GuestRepository;
 import com.evgen.dao.HotelRepository;
 import com.evgen.dao.ReservationRepository;
 import com.evgen.service.AvailabilityService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.evgen.config.ServiceImplTestConf;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ServiceImplTestConf.class)
