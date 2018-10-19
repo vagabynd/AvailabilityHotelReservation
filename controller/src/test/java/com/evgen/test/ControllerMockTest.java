@@ -80,4 +80,28 @@ public class ControllerMockTest {
     ).andDo(print())
         .andExpect(status().isOk());
   }
+
+  @Test
+  public void retrieveHotelsTest() throws Exception {
+    expect(availabilityService.retrieveHotels()).andReturn(new ArrayList<>());
+    replay(availabilityService);
+
+    mockMvc.perform(
+        get("/hotels")
+            .accept(MediaType.APPLICATION_JSON)
+    ).andDo(print())
+        .andExpect(status().isOk());
+  }
+
+  @Test
+  public void retrieveApartmentsByHotelNameTest() throws Exception {
+    expect(availabilityService.retrieveApartments(anyString())).andReturn(new ArrayList<>());
+    replay(availabilityService);
+
+    mockMvc.perform(
+        get("/hotels/name/apartments")
+            .accept(MediaType.APPLICATION_JSON)
+    ).andDo(print())
+        .andExpect(status().isOk());
+  }
 }

@@ -2,11 +2,13 @@ package com.evgen.service;
 
 import java.util.List;
 
+import com.evgen.Apartment;
 import com.evgen.Guest;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.evgen.Hotel;
 import com.evgen.Reservation;
 import com.evgen.dao.GuestRepository;
 import com.evgen.dao.HotelRepository;
@@ -35,6 +37,17 @@ public class AvailabilityServiceImpl implements AvailabilityService {
   @Override
   public Guest retrieveGuestByName(String name) {
     return guestRepository.findByName(name);
+  }
+
+  @Override
+  public List<Hotel> retrieveHotels() {
+    return hotelRepository.findAll();
+  }
+
+  @Override
+  public List<Apartment> retrieveApartments(String hotelName) {
+    Hotel hotel = hotelRepository.findByHotelName(hotelName);
+    return hotel.getApartments();
   }
 
 }
