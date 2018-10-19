@@ -1,5 +1,6 @@
 package com.evgen.test;
 
+import static org.easymock.EasyMock.anyString;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.reset;
@@ -24,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.evgen.Guest;
 import com.evgen.Reservation;
 import com.evgen.config.ControllerMockTestConf;
 import com.evgen.service.AvailabilityService;
@@ -62,6 +64,19 @@ public class ControllerMockTest {
         get("/reservations")
             .accept(MediaType.APPLICATION_JSON)
             .header("guestId", "5bc7340b677aa44e986d19db")
+    ).andDo(print())
+        .andExpect(status().isOk());
+  }
+
+  @Test
+  public void retrieveGuestByNameTest() throws Exception {
+    expect(availabilityService.retrieveGuestByName(anyString()))
+        .andReturn(new Guest());
+    replay(availabilityService);
+
+    mockMvc.perform(
+        get("/guests/sergei")
+            .accept(MediaType.APPLICATION_JSON)
     ).andDo(print())
         .andExpect(status().isOk());
   }

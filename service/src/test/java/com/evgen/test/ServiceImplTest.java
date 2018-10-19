@@ -41,7 +41,7 @@ public class ServiceImplTest {
   private ObjectMapper objectMapper;
 
   @Autowired
-  private AvailabilityService reservationService;
+  private AvailabilityService availabilityService;
 
   @Autowired
   private GuestRepository guestRepositoryMock;
@@ -72,8 +72,21 @@ public class ServiceImplTest {
     expect(guestRepositoryMock.findByGuestId(new ObjectId("5bc449c09ddbcd660ac58f07"))).andReturn(guest);
     replay(guestRepositoryMock);
 
-    List<Reservation> reservations = reservationService.retrieveReservations(new ObjectId("5bc449c09ddbcd660ac58f07"));
+    List<Reservation> reservations = availabilityService.retrieveReservations(new ObjectId("5bc449c09ddbcd660ac58f07"));
 
     Assert.assertEquals(reservations.size(), 1);
+  }
+
+  @Test
+  public void retrieveGuestByName() throws Exception {
+    LOGGER.debug("test: retrieve guest by name");
+
+    Guest guest = objectMapper.readValue(getClass().getResourceAsStream(GUEST), Guest.class);
+    expect(guestRepositoryMock.findByName("sergei")).andReturn(guest);
+    replay(guestRepositoryMock);
+
+    Guest guestReturn = availabilityService.retrieveGuestByName("sergei");
+
+    Assert.assertEquals(guestReturn.getGuestId(), guest.getGuestId());
   }
 }

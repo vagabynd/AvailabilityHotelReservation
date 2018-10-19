@@ -11,4 +11,6 @@ public interface GuestRepository extends MongoRepository<Guest, String> {
 
   Guest findByGuestId(ObjectId guestId);
 
+  Guest findByName(String name);
+
 }

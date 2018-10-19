@@ -2,6 +2,7 @@ package com.evgen.service;
 
 import java.util.List;
 
+import com.evgen.Guest;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,14 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     this.reservationRepository = reservationRepository;
   }
 
+  @Override
   public List<Reservation> retrieveReservations(ObjectId guestId) {
     return guestRepository.findByGuestId(guestId).getReservations();
   }
+
+  @Override
+  public Guest retrieveGuestByName(String name) {
+    return guestRepository.findByName(name);
+  }
+
 }
