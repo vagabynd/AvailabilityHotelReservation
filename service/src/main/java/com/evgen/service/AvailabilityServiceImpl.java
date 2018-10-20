@@ -12,7 +12,6 @@ import com.evgen.Reservation;
 import com.evgen.dao.GuestRepository;
 import com.evgen.dao.HotelRepository;
 import com.evgen.dao.ReservationRepository;
-
 @Service
 public class AvailabilityServiceImpl implements AvailabilityService {
 
