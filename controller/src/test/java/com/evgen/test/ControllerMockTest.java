@@ -76,7 +76,7 @@ public class ControllerMockTest {
     replay(availabilityService);
 
     mockMvc.perform(
-        get("/guests/sergei")
+        get("/guests?name=sergei")
             .accept(MediaType.APPLICATION_JSON)
     ).andDo(print())
         .andExpect(status().isOk());
@@ -100,7 +100,7 @@ public class ControllerMockTest {
     replay(availabilityService);
 
     mockMvc.perform(
-        get("/hotels/name")
+        get("/hotels?hotelName=name")
             .accept(MediaType.APPLICATION_JSON)
     ).andDo(print())
         .andExpect(status().isOk());
