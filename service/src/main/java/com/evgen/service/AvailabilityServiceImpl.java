@@ -1,6 +1,8 @@
 package com.evgen.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +30,10 @@ public class AvailabilityServiceImpl implements AvailabilityService {
   }
 
   @Override
-  public List<Reservation> retrieveReservations(ObjectId guestId) {
-    return guestRepository.findByGuestId(guestId).getReservations();
+  public List<Reservation> retrieveReservations(String guestId) {
+    return Optional.ofNullable(guestRepository.findByGuestId(guestId))
+        .map(Guest::getReservations)
+        .orElse(new ArrayList<>());
   }
 
   @Override

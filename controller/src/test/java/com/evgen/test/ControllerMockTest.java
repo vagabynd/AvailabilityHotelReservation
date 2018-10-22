@@ -11,7 +11,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 
-import org.bson.types.ObjectId;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +26,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.evgen.Guest;
 import com.evgen.Hotel;
-import com.evgen.Reservation;
 import com.evgen.config.ControllerMockTestConf;
 import com.evgen.service.AvailabilityService;
 
@@ -57,8 +55,8 @@ public class ControllerMockTest {
 
   @Test
   public void retrieveReservationsTest() throws Exception {
-    expect(availabilityService.retrieveReservations(new ObjectId("5bc7340b677aa44e986d19db")))
-        .andReturn(new ArrayList<Reservation>());
+    expect(availabilityService.retrieveReservations("5bc7340b677aa44e986d19db"))
+        .andReturn(new ArrayList<>());
     replay(availabilityService);
 
     mockMvc.perform(

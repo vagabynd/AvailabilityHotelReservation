@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bson.types.ObjectId;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -71,10 +70,10 @@ public class ServiceImplTest {
     LOGGER.debug("test: retrieve reservations");
 
     Guest guest = objectMapper.readValue(getClass().getResourceAsStream(GUEST), Guest.class);
-    expect(guestRepositoryMock.findByGuestId(new ObjectId("5bc449c09ddbcd660ac58f07"))).andReturn(guest);
+    expect(guestRepositoryMock.findByGuestId("5bc449c09ddbcd660ac58f07")).andReturn(guest);
     replay(guestRepositoryMock);
 
-    List<Reservation> reservations = availabilityService.retrieveReservations(new ObjectId("5bc449c09ddbcd660ac58f07"));
+    List<Reservation> reservations = availabilityService.retrieveReservations("5bc449c09ddbcd660ac58f07");
 
     Assert.assertEquals(reservations.size(), 1);
   }

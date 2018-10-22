@@ -34,7 +34,7 @@ public class AvailabilityController {
   @GetMapping("/reservations")
   @ResponseStatus(HttpStatus.OK)
   @ResponseBody
-  public List<Reservation> retrieveReservations(@RequestHeader ObjectId guestId) {
+  public List<Reservation> retrieveReservations(@RequestHeader String guestId) {
     return availabilityService.retrieveReservations(guestId);
   }
 

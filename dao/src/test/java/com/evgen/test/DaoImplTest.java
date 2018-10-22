@@ -43,14 +43,14 @@ public class DaoImplTest {
     LOGGER.debug("test: get guest by name");
 
     Guest guest = guestRepository.findByName("sergei");
-    Assert.assertEquals(guest.getGuestId(), new ObjectId("5bc70e09677aa47db3942744"));
+    Assert.assertEquals(guest.getGuestId(), "5bc70e09677aa47db3942744");
   }
 
   @Test
   public void getGuestByIdTest() {
     LOGGER.debug("test: get guest by name");
 
-    Guest guest = guestRepository.findByGuestId(new ObjectId("5bc70e09677aa47db3942744"));
+    Guest guest = guestRepository.findByGuestId("5bc70e09677aa47db3942744");
     Assert.assertEquals(guest.getName(), "sergei");
   }
 
