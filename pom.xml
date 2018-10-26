@@ -4,7 +4,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.com.evgen</groupId>
+  <groupId>com.com.com.evgen</groupId>
   <artifactId>AvailabilityHotelReservation</artifactId>
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
@@ -38,25 +38,25 @@
       </dependency>
 
       <dependency>
-        <groupId>com.com.evgen</groupId>
+        <groupId>com.com.com.evgen</groupId>
         <artifactId>dao</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>com.com.evgen</groupId>
+        <groupId>com.com.com.evgen</groupId>
         <artifactId>service-api</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>com.com.evgen</groupId>
+        <groupId>com.com.com.evgen</groupId>
         <artifactId>service</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>com.com.evgen</groupId>
+        <groupId>com.com.com.evgen</groupId>
         <artifactId>controller</artifactId>
         <version>${project.version}</version>
       </dependency>
