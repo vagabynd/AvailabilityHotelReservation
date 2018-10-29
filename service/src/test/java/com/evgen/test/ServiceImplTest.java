@@ -50,9 +50,6 @@ public class ServiceImplTest {
   @Autowired
   private HotelRepository hotelRepositoryMock;
 
-  @Autowired
-  private ReservationRepository reservationRepositoryMock;
-
   @After
   public void clean() {
     verify();
@@ -61,7 +58,6 @@ public class ServiceImplTest {
   @Before
   public void setUp() {
     reset(guestRepositoryMock);
-    reset(reservationRepositoryMock);
     reset(hotelRepositoryMock);
   }
 
@@ -102,7 +98,7 @@ public class ServiceImplTest {
     expect(hotelRepositoryMock.findAll()).andReturn(hotels);
     replay(hotelRepositoryMock);
 
-    List<Hotel> hotelsTest = availabilityService.retrieveHotels();
+    List<Hotel> hotelsTest = availabilityService.retrieveHotels(null);
     Assert.assertEquals(hotelsTest.size(), 1);
   }
 
@@ -115,7 +111,7 @@ public class ServiceImplTest {
     expect(hotelRepositoryMock.findByHotelName(hotel.getHotelName())).andReturn(hotel);
     replay(hotelRepositoryMock);
 
-    Hotel hotelReturn = availabilityService.retrieveHotelByName(hotel.getHotelName());
-    Assert.assertEquals(hotelReturn.getHotelId(), hotel.getHotelId());
+    List<Hotel> hotelReturn = availabilityService.retrieveHotels(hotel.getHotelName());
+    Assert.assertEquals(hotelReturn.get(0).getHotelId(), hotel.getHotelId());
   }
 }

@@ -12,9 +12,7 @@ public interface AvailabilityService {
 
   Guest retrieveGuestByName(String name);
 
-  List<Hotel> retrieveHotels();
-
-  Hotel retrieveHotelByName(String hotelName);
+  List<Hotel> retrieveHotels(String hotelName);
 
   Guest createGuest(Guest guest);
 }

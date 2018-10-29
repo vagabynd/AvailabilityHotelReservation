@@ -82,7 +82,7 @@ public class ControllerMockTest {
 
   @Test
   public void retrieveHotelsTest() throws Exception {
-    expect(availabilityService.retrieveHotels()).andReturn(new ArrayList<>());
+    expect(availabilityService.retrieveHotels(null)).andReturn(new ArrayList<>());
     replay(availabilityService);
 
     mockMvc.perform(
@@ -94,7 +94,7 @@ public class ControllerMockTest {
 
   @Test
   public void retrieveHotelByNameTest() throws Exception {
-    expect(availabilityService.retrieveHotelByName(anyString())).andReturn(new Hotel());
+    expect(availabilityService.retrieveHotels(anyString())).andReturn(new ArrayList<>());
     replay(availabilityService);
 
     mockMvc.perform(

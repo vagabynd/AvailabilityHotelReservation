@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.evgen.dao.GuestRepository;
 import com.evgen.dao.HotelRepository;
-import com.evgen.dao.ReservationRepository;
 import com.evgen.service.AvailabilityService;
 import com.evgen.service.AvailabilityServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,13 +24,8 @@ public class ServiceImplTestConf {
   }
 
   @Bean
-  public ReservationRepository reservationRepository() {
-    return EasyMock.createMock(ReservationRepository.class);
-  }
-
-  @Bean
   public AvailabilityService availabilityService() {
-    return new AvailabilityServiceImpl(guestRepository(), hotelRepository(), reservationRepository());
+    return new AvailabilityServiceImpl(guestRepository(), hotelRepository());
   }
 
   @Bean

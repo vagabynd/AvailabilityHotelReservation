@@ -1,32 +1,30 @@
 package com.evgen.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.evgen.Guest;
 import com.evgen.Hotel;
 import com.evgen.Reservation;
 import com.evgen.dao.GuestRepository;
 import com.evgen.dao.HotelRepository;
-import com.evgen.dao.ReservationRepository;
 
 @Service
 public class AvailabilityServiceImpl implements AvailabilityService {
 
   private final GuestRepository guestRepository;
   private final HotelRepository hotelRepository;
-  private final ReservationRepository reservationRepository;
 
   @Autowired
-  public AvailabilityServiceImpl(GuestRepository guestRepository, HotelRepository hotelRepository,
-      ReservationRepository reservationRepository) {
+  public AvailabilityServiceImpl(GuestRepository guestRepository, HotelRepository hotelRepository) {
     this.guestRepository = guestRepository;
     this.hotelRepository = hotelRepository;
-    this.reservationRepository = reservationRepository;
   }
 
   @Override
@@ -42,12 +40,15 @@ public class AvailabilityServiceImpl implements AvailabilityService {
   }
 
   @Override
-  public List<Hotel> retrieveHotels() {
+  public List<Hotel> retrieveHotels(String hotelName) {
+    if (!StringUtils.isEmpty(hotelName)) {
+      return Collections.singletonList(retrieveHotelByName(hotelName));
+    }
+
     return hotelRepository.findAll();
   }
 
-  @Override
-  public Hotel retrieveHotelByName(String hotelName) {
+  private Hotel retrieveHotelByName(String hotelName) {
     return hotelRepository.findByHotelName(hotelName);
   }
 

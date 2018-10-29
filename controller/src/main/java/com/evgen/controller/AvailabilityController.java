@@ -50,10 +50,8 @@ public class AvailabilityController {
   @ResponseStatus(HttpStatus.OK)
   @ResponseBody
   public List<Hotel> retrieveHotels(@RequestParam(value = "hotelName", required = false) String hotelName) {
-    if (!StringUtils.isEmpty(hotelName)) {
-      return Collections.singletonList(availabilityService.retrieveHotelByName(hotelName));
-    }
-    return availabilityService.retrieveHotels();
+
+    return availabilityService.retrieveHotels(hotelName);
   }
 
   @PostMapping("/guests")
