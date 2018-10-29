@@ -11,4 +11,3 @@ public interface HotelRepository extends MongoRepository<Hotel, String> {
   Hotel findByHotelName(String hotelName);
 
 }
-
