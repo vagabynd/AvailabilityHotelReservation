@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +13,7 @@ import com.evgen.Reservation;
 import com.evgen.dao.GuestRepository;
 import com.evgen.dao.HotelRepository;
 import com.evgen.dao.ReservationRepository;
+
 @Service
 public class AvailabilityServiceImpl implements AvailabilityService {
 
@@ -51,4 +51,8 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     return hotelRepository.findByHotelName(hotelName);
   }
 
+  @Override
+  public Guest createGuest(Guest guest) {
+    return guestRepository.save(guest);
+  }
 }

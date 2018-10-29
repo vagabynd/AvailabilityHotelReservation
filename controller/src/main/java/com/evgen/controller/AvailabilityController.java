@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,5 +55,12 @@ public class AvailabilityController {
       return Collections.singletonList(availabilityService.retrieveHotelByName(hotelName));
     }
     return availabilityService.retrieveHotels();
+  }
+
+  @PostMapping("/guests")
+  @ResponseStatus(HttpStatus.CREATED)
+  @ResponseBody
+  public Guest createGuest(@RequestBody Guest guest) {
+    return availabilityService.createGuest(guest);
   }
 }

@@ -15,4 +15,6 @@ public interface AvailabilityService {
   List<Hotel> retrieveHotels();
 
   Hotel retrieveHotelByName(String hotelName);
+
+  Guest createGuest(Guest guest);
 }
