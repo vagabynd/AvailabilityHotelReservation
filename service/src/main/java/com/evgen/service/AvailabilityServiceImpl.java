@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.server.ServerWebInputException;
 
 import com.evgen.Guest;
 import com.evgen.Hotel;
@@ -29,14 +30,15 @@ public class AvailabilityServiceImpl implements AvailabilityService {
 
   @Override
   public List<Reservation> retrieveReservations(String guestId) {
-    return Optional.ofNullable(guestRepository.findByGuestId(guestId))
+    return Optional.of(guestRepository.findByGuestId(guestId)
+        .orElseThrow(() -> new ServerWebInputException("Incorrect guestId")))
         .map(Guest::getReservations)
         .orElse(new ArrayList<>());
   }
 
   @Override
   public Guest retrieveGuestByName(String name) {
-    return guestRepository.findByName(name);
+    return guestRepository.findByName(name).orElseThrow(() -> new ServerWebInputException("Incorrect name"));
   }
 
   @Override
@@ -49,7 +51,8 @@ public class AvailabilityServiceImpl implements AvailabilityService {
   }
 
   private Hotel retrieveHotelByName(String hotelName) {
-    return hotelRepository.findByHotelName(hotelName);
+    return hotelRepository.findByHotelName(hotelName)
+        .orElseThrow(() -> new ServerWebInputException("Incorrect hotelName"));
   }
 
   @Override

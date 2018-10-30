@@ -41,7 +41,7 @@ public class DaoImplTest {
   public void getGuestByNameTest() {
     LOGGER.debug("test: get guest by name");
 
-    Guest guest = guestRepository.findByName("sergei");
+    Guest guest = guestRepository.findByName("sergei").orElse(new Guest());
     Assert.assertEquals(guest.getGuestId(), "5bc70e09677aa47db3942744");
   }
 
@@ -49,7 +49,7 @@ public class DaoImplTest {
   public void getGuestByIdTest() {
     LOGGER.debug("test: get guest by name");
 
-    Guest guest = guestRepository.findByGuestId("5bc70e09677aa47db3942744");
+    Guest guest = guestRepository.findByGuestId("5bc70e09677aa47db3942744").orElse(new Guest());
     Assert.assertEquals(guest.getName(), "sergei");
   }
 
@@ -65,7 +65,7 @@ public class DaoImplTest {
   public void getHotelByName() {
     LOGGER.debug("test: get hotels");
 
-    Hotel hotel = hotelRepository.findByHotelName("TestHotel");
+    Hotel hotel = hotelRepository.findByHotelName("TestHotel").orElse(null);
     Assert.assertNotNull(hotel);
   }
 }

@@ -7,6 +7,7 @@ import static org.easymock.EasyMock.verify;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -66,7 +67,7 @@ public class ServiceImplTest {
     LOGGER.debug("test: retrieve reservations");
 
     Guest guest = objectMapper.readValue(getClass().getResourceAsStream(GUEST), Guest.class);
-    expect(guestRepositoryMock.findByGuestId("5bc449c09ddbcd660ac58f07")).andReturn(guest);
+    expect(guestRepositoryMock.findByGuestId("5bc449c09ddbcd660ac58f07")).andReturn(Optional.of(guest));
     replay(guestRepositoryMock);
 
     List<Reservation> reservations = availabilityService.retrieveReservations("5bc449c09ddbcd660ac58f07");
@@ -79,7 +80,7 @@ public class ServiceImplTest {
     LOGGER.debug("test: retrieve guest by name");
 
     Guest guest = objectMapper.readValue(getClass().getResourceAsStream(GUEST), Guest.class);
-    expect(guestRepositoryMock.findByName("sergei")).andReturn(guest);
+    expect(guestRepositoryMock.findByName("sergei")).andReturn(Optional.of(guest));
     replay(guestRepositoryMock);
 
     Guest guestReturn = availabilityService.retrieveGuestByName("sergei");
@@ -108,7 +109,7 @@ public class ServiceImplTest {
 
     Hotel hotel = objectMapper.readValue(getClass().getResourceAsStream(HOTEL), Hotel.class);
 
-    expect(hotelRepositoryMock.findByHotelName(hotel.getHotelName())).andReturn(hotel);
+    expect(hotelRepositoryMock.findByHotelName(hotel.getHotelName())).andReturn(Optional.of(hotel));
     replay(hotelRepositoryMock);
 
     List<Hotel> hotelReturn = availabilityService.retrieveHotels(hotel.getHotelName());
