@@ -50,13 +50,13 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     return hotelRepository.findAll();
   }
 
-  private Hotel retrieveHotelByName(String hotelName) {
-    return hotelRepository.findByHotelName(hotelName)
-        .orElseThrow(() -> new ServerWebInputException("Incorrect hotelName"));
-  }
-
   @Override
   public Guest createGuest(Guest guest) {
     return guestRepository.save(guest);
+  }
+
+  private Hotel retrieveHotelByName(String hotelName) {
+    return hotelRepository.findByHotelName(hotelName)
+        .orElseThrow(() -> new ServerWebInputException("Incorrect hotelName"));
   }
 }

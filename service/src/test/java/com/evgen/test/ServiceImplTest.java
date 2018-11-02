@@ -26,7 +26,6 @@ import com.evgen.Reservation;
 import com.evgen.config.ServiceImplTestConf;
 import com.evgen.dao.GuestRepository;
 import com.evgen.dao.HotelRepository;
-import com.evgen.dao.ReservationRepository;
 import com.evgen.service.AvailabilityService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
