@@ -30,12 +30,12 @@ public class AvailabilityController {
     this.availabilityService = availabilityService;
   }
 
-  @GetMapping("/reservations")
-  @ResponseStatus(HttpStatus.OK)
-  @ResponseBody
-  public List<Reservation> retrieveReservations(@RequestHeader String guestId) {
-    return availabilityService.retrieveReservations(guestId);
-  }
+//  @GetMapping("/reservations")
+//  @ResponseStatus(HttpStatus.OK)
+//  @ResponseBody
+//  public List<Reservation> retrieveReservations(@RequestHeader String guestId) {
+//    return availabilityService.retrieveReservations(guestId);
+//  }
 
   @GetMapping("/guests")
   @ResponseStatus(HttpStatus.OK)

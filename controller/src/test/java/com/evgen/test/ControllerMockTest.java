@@ -53,19 +53,6 @@ public class ControllerMockTest {
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
   }
 
-  @Test
-  public void retrieveReservationsTest() throws Exception {
-    expect(availabilityService.retrieveReservations("5bc7340b677aa44e986d19db"))
-        .andReturn(new ArrayList<>());
-    replay(availabilityService);
-
-    mockMvc.perform(
-        get("/reservations")
-            .accept(MediaType.APPLICATION_JSON)
-            .header("guestId", "5bc7340b677aa44e986d19db")
-    ).andDo(print())
-        .andExpect(status().isOk());
-  }
 
   @Test
   public void retrieveGuestByNameTest() throws Exception {
