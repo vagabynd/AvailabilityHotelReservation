@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.evgen.Apartment;
 import com.evgen.Hotel;
+import com.evgen.builder.ApartmentBuilder;
 
 public class HotelRowMapper implements RowMapper<Hotel> {
 
@@ -22,15 +22,7 @@ public class HotelRowMapper implements RowMapper<Hotel> {
         return hotel;
       }
 
-      do {
-        if (hotel.getHotelId().equals(resultSet.getString("hotel_id"))) {
-          hotel.getApartments().add(
-              new Apartment(
-                  resultSet.getString("apartment_id"),
-                  resultSet.getString("room_count"))
-          );
-        }
-      } while (resultSet.next());
+      ApartmentBuilder.buildApartment(hotel, resultSet);
 
       return hotel;
   }
