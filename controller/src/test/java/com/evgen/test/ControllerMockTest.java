@@ -12,31 +12,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import com.evgen.Guest;
-import com.evgen.Hotel;
 import com.evgen.config.ControllerMockTestConf;
+import com.evgen.controller.AvailabilityController;
 import com.evgen.service.AvailabilityService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ControllerMockTestConf.class)
-@WebAppConfiguration
+@WebMvcTest(AvailabilityController.class)
+@AutoConfigureMockMvc
 public class ControllerMockTest {
 
   @Autowired
-  private WebApplicationContext webApplicationContext;
-
   private MockMvc mockMvc;
 
   @Autowired
@@ -47,12 +44,6 @@ public class ControllerMockTest {
     verify(availabilityService);
     reset(availabilityService);
   }
-
-  @Before
-  public void setUp() {
-    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-  }
-
 
   @Test
   public void retrieveGuestByNameTest() throws Exception {

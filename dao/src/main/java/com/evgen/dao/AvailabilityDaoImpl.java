@@ -8,22 +8,23 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.evgen.AvailabilityDao;
 import com.evgen.Guest;
 import com.evgen.Hotel;
 import com.evgen.mapper.GuestRowMapper;
-import com.evgen.mapper.HotelRowMapper;
+import com.evgen.mapper.HotelResultSetExtractor;
 import com.evgen.mapper.NewGuestRowMapper;
 
 @Repository
 @PropertySource(value = "classpath:sql.properties")
+@Transactional
 public class AvailabilityDaoImpl implements AvailabilityDao {
 
   private static final String GUEST_NAME = "name";
   private static final String PASSWORD = "password";
   private static final String HOTEL_NAME = "hotelName";
-
 
   @Value("${AvailabilityDaoSql.getGuestById}")
   private String getGuestByNameSql;
@@ -47,25 +48,19 @@ public class AvailabilityDaoImpl implements AvailabilityDao {
 
   @Override
   public Guest retrieveGuestByName(String name) {
-    MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-
-    parameterSource.addValue(GUEST_NAME, name);
-
-    return namedParameterJdbcTemplate.queryForObject(getGuestByNameSql, parameterSource, new GuestRowMapper());
+    return namedParameterJdbcTemplate
+        .queryForObject(getGuestByNameSql, new MapSqlParameterSource(GUEST_NAME, name), new GuestRowMapper());
   }
 
   @Override
   public List<Hotel> retrieveHotels() {
-    return namedParameterJdbcTemplate.query(getHotelsSql, new HotelRowMapper());
+    return namedParameterJdbcTemplate.query(getHotelsSql, new HotelResultSetExtractor());
   }
 
   @Override
-  public Hotel retrieveHotelByName(String hotelName) {
-    MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-
-    parameterSource.addValue(HOTEL_NAME, hotelName);
-
-    return namedParameterJdbcTemplate.queryForObject(getHotelByNameSql, parameterSource, new HotelRowMapper());
+  public List<Hotel> retrieveHotelByName(String hotelName) {
+    return namedParameterJdbcTemplate
+        .query(getHotelByNameSql, new MapSqlParameterSource(HOTEL_NAME, hotelName), new HotelResultSetExtractor());
   }
 
   @Override

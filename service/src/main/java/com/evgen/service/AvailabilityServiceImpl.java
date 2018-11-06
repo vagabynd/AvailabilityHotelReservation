@@ -1,6 +1,5 @@
 package com.evgen.service;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +20,6 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     this.availabilityDao = availabilityDao;
   }
 
-//  @Override
-//  public List<Reservation> retrieveReservations(String guestId) {
-//    return Optional.of(guestRepository.findByGuestId(guestId)
-//        .orElseThrow(() -> new ServerWebInputException("Incorrect guestId")))
-//        .map(Guest::getReservations)
-//        .orElse(new ArrayList<>());
-//  }
-
   @Override
   public Guest retrieveGuestByName(String name) {
     return availabilityDao.retrieveGuestByName(name);
@@ -37,7 +28,7 @@ public class AvailabilityServiceImpl implements AvailabilityService {
   @Override
   public List<Hotel> retrieveHotels(String hotelName) {
     if (!StringUtils.isEmpty(hotelName)) {
-      return Collections.singletonList(availabilityDao.retrieveHotelByName(hotelName));
+      return availabilityDao.retrieveHotelByName(hotelName);
     }
 
     return availabilityDao.retrieveHotels();
