@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.evgen.AvailabilityDao;
 import com.evgen.Guest;
@@ -18,8 +16,6 @@ import com.evgen.mapper.HotelResultSetExtractor;
 import com.evgen.mapper.NewGuestRowMapper;
 
 @Repository
-@PropertySource(value = "classpath:sql.properties")
-@Transactional
 public class AvailabilityDaoImpl implements AvailabilityDao {
 
   private static final String GUEST_NAME = "name";
@@ -67,9 +63,13 @@ public class AvailabilityDaoImpl implements AvailabilityDao {
   public Guest createGuest(Guest guest) {
     MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 
-    parameterSource.addValue(GUEST_NAME, guest.getName());
-    parameterSource.addValue(PASSWORD, guest.getPassword());
+    setCreateGuestParams(guest, parameterSource);
 
     return namedParameterJdbcTemplate.queryForObject(createGuestSql, parameterSource, new NewGuestRowMapper());
+  }
+
+  private void setCreateGuestParams(Guest guest, MapSqlParameterSource parameterSource) {
+    parameterSource.addValue(GUEST_NAME, guest.getName());
+    parameterSource.addValue(PASSWORD, guest.getPassword());
   }
 }

@@ -31,10 +31,15 @@
     <easymock.version>3.4</easymock.version>
     <sping-boot.version>2.1.0.RELEASE</sping-boot.version>
     <postgresql.verison>42.2.5</postgresql.verison>
+    <h2.version>1.4.197</h2.version>
+    <tomcat-jdbc.version>7.0.35</tomcat-jdbc.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
+
+      <!--project-->
+
       <dependency>
         <groupId>com.com.evgen</groupId>
         <artifactId>model</artifactId>
@@ -77,12 +82,7 @@
         <version>${sping-boot.version}</version>
       </dependency>
 
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-test</artifactId>
-        <version>${sping-boot.version}</version>
-        <scope>test</scope>
-      </dependency>
+      <!--spring boot-->
 
       <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -97,15 +97,39 @@
       </dependency>
 
       <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+        <version>${sping-boot.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <version>${sping-boot.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-jdbc</artifactId>
+        <version>${tomcat-jdbc.version}</version>
+      </dependency>
+
+      <!--database-->
+
+      <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
         <version>${postgresql.verison}</version>
       </dependency>
 
+      <!--test-->
+
       <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-jdbc</artifactId>
-        <version>${sping-boot.version}</version>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${h2.version}</version>
+        <scope>test</scope>
       </dependency>
 
       <dependency>
@@ -114,6 +138,7 @@
         <version>${easymock.version}</version>
         <scope>test</scope>
       </dependency>
+
     </dependencies>
   </dependencyManagement>
 

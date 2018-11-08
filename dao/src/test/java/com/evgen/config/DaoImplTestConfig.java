@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -12,19 +13,13 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.evgen.AvailabilityDao;
-import com.evgen.dao.AvailabilityDaoImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootConfiguration
 @ComponentScan(basePackages = "com.evgen.dao")
 @EnableTransactionManagement
+@PropertySource("classpath:sql/sql.properties")
 public class DaoImplTestConfig {
-
-  @Bean
-  public AvailabilityDao availabilityDao() {
-    return new AvailabilityDaoImpl(namedParameterJdbcTemplate());
-  }
 
   @Bean
   public DataSource getDataSource() {

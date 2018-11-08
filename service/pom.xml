@@ -12,20 +12,9 @@
   <artifactId>service</artifactId>
   <packaging>jar</packaging>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>8</source>
-          <target>8</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
   <dependencies>
+
+    <!--project-->
 
     <dependency>
       <groupId>com.com.evgen</groupId>
@@ -41,6 +30,8 @@
       <groupId>com.com.com.evgen</groupId>
       <artifactId>service-api</artifactId>
     </dependency>
+
+    <!--spring-boot-->
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -58,10 +49,26 @@
       <artifactId>commons-lang3</artifactId>
     </dependency>
 
+    <!--test-->
+
     <dependency>
       <groupId>org.easymock</groupId>
       <artifactId>easymock</artifactId>
     </dependency>
 
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

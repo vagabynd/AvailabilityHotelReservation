@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +40,13 @@ public class DaoImplTest {
     Assert.assertEquals(guest.getGuestId(), "1");
   }
 
+  @Test(expected = EmptyResultDataAccessException.class)
+  public void getGuestByIncorrectNameTest() {
+    LOGGER.debug("test: get guest by incorrect name");
+
+    availabilityDao.retrieveGuestByName("sergei1");
+  }
+
   @Test
   public void getHotels() {
     LOGGER.debug("test: get hotels");
@@ -49,9 +57,17 @@ public class DaoImplTest {
 
   @Test
   public void getHotelByName() {
-    LOGGER.debug("test: get hotels");
+    LOGGER.debug("test: get hotel by name");
 
     List<Hotel> hotels = availabilityDao.retrieveHotelByName("Abc");
     Assert.assertEquals(hotels.size(), 1);
+  }
+
+  @Test
+  public void getHotelByIncorrectName() {
+    LOGGER.debug("test: get hotel by incorrect name");
+
+    List<Hotel> hotels = availabilityDao.retrieveHotelByName("Abc11");
+    Assert.assertEquals(hotels.size(), 0);
   }
 }

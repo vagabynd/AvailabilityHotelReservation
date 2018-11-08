@@ -13,6 +13,9 @@
   <packaging>war</packaging>
 
   <dependencies>
+
+    <!--project-->
+
     <dependency>
       <groupId>com.com.evgen</groupId>
       <artifactId>model</artifactId>
@@ -28,15 +31,26 @@
       <artifactId>dao</artifactId>
     </dependency>
 
+    <!--database-->
+
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
     </dependency>
+
+    <!--spring-boot-->
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!--test-->
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -45,10 +59,6 @@
       <scope>test</scope>
     </dependency>
 
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-    </dependency>
   </dependencies>
 
 </project>
