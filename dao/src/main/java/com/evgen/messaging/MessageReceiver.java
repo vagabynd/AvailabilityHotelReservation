@@ -38,23 +38,43 @@ public class MessageReceiver {
     switch (response.getEndPoint()) {
       case "retrieveGuestByName":
         Guest guest = availabilityService.retrieveGuestByName(response.getRequestObject().toString());
-        messageSender.sendMessage(new com.evgen.Message(response.getId(), response.getEndPoint(), guest));
+
+        com.evgen.Message retrieveGuestByNameResponse = new com.evgen.Message(response.getId(), response.getEndPoint());
+        retrieveGuestByNameResponse.getRequestObject().add(guest);
+
+        messageSender.sendMessage(retrieveGuestByNameResponse);
         break;
       case "retrieveHotels":
         List<Hotel> hotels = availabilityService.retrieveHotels(null);
-        messageSender.sendMessage(new com.evgen.Message(response.getId(), response.getEndPoint(), hotels));
+
+        com.evgen.Message retrieveHotelsResponse = new com.evgen.Message(response.getId(), response.getEndPoint());
+        retrieveHotelsResponse.getRequestObject().add(hotels);
+
+        messageSender.sendMessage(retrieveHotelsResponse);
         break;
       case "retrieveHotelByName":
         List<Hotel> hotel = availabilityService.retrieveHotels(response.getRequestObject().toString());
-        messageSender.sendMessage(new com.evgen.Message(response.getId(), response.getEndPoint(), hotel));
+
+        com.evgen.Message retrieveHotelByNameResponse = new com.evgen.Message(response.getId(), response.getEndPoint());
+        retrieveHotelByNameResponse.getRequestObject().add(hotel);
+
+        messageSender.sendMessage(retrieveHotelByNameResponse);
         break;
       case "createGuest":
         Guest guest1 = availabilityService.createGuest((Guest) response.getRequestObject());
-        messageSender.sendMessage(new com.evgen.Message(response.getId(), response.getEndPoint(), guest1));
+
+        com.evgen.Message createGuestResponse = new com.evgen.Message(response.getId(), response.getEndPoint());
+        createGuestResponse.getRequestObject().add(guest1);
+
+        messageSender.sendMessage(createGuestResponse);
         break;
       case "retrieveReservations":
         List<Reservation> reservations = availabilityService.retrieveReservations(response.getRequestObject().toString());
-        messageSender.sendMessage(new com.evgen.Message(response.getId(), response.getEndPoint(), reservations));
+
+        com.evgen.Message retrieveReservationsResponse = new com.evgen.Message(response.getId(), response.getEndPoint());
+        retrieveReservationsResponse.getRequestObject().add(reservations);
+
+        messageSender.sendMessage(retrieveReservationsResponse);
         break;
     }
 
