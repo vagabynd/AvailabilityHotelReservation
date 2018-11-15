@@ -37,7 +37,7 @@ public class MessageReceiver {
 
     switch (response.getEndPoint()) {
       case "retrieveGuestByName":
-        Guest guest = availabilityService.retrieveGuestByName(response.getRequestObject().toString());
+        Guest guest = availabilityService.retrieveGuestByName(response.getRequestObject().get(0).toString());
 
         com.evgen.Message retrieveGuestByNameResponse = new com.evgen.Message(response.getId(), response.getEndPoint());
         retrieveGuestByNameResponse.getRequestObject().add(guest);
