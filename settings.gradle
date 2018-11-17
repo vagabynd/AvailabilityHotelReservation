@@ -1,0 +1,10 @@
+rootProject.name = 'AvailabilityHotelReservation'
+include ':controller'
+include ':dao'
+include ':service'
+include ':service-api'
+
+project(':controller').projectDir = "$rootDir/controller" as File
+project(':dao').projectDir = "$rootDir/dao" as File
+project(':service').projectDir = "$rootDir/service" as File
+project(':service-api').projectDir = "$rootDir/service-api" as File
